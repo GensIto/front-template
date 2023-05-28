@@ -8,7 +8,7 @@
 - [ ] storybook: msw
 - [x] e2e
 - [ ] UI library
-- [ ] tanstack query
+- [x] tanstack query
 - [ ] react-hook-from
 - [ ] react-router-dom
 
