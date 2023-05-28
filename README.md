@@ -6,7 +6,7 @@
 - [ ] storybook: test
   - [ ] jest
 - [ ] storybook: msw
-- [ ] e2e
+- [x] e2e
 - [ ] UI library
 - [ ] tanstack query
 - [ ] react-hook-from
@@ -122,6 +122,15 @@ script に追加
     /// ...
     "format": "npx prettier --write ."
   },
+```
+
+</details>
+
+<details>
+<summary>playwright</summary>
+
+```
+yarn create playwright
 ```
 
 </details>
