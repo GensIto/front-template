@@ -12,10 +12,14 @@
     "e2e": "npx playwright test --ui"
   },
   "dependencies": {
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.13.2",
+    "@mui/styled-engine-sc": "^5.12.0",
     "@tanstack/react-query": "^4.29.11",
     "axios": "^1.4.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "styled-components": "^5.3.11"
   },
   "devDependencies": {
     "@playwright/test": "^1.34.3",

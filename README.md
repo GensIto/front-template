@@ -136,7 +136,7 @@ yarn create playwright
 </details>
 
 <details>
-<summary>playwright</summary>
+<summary>fetch系</summary>
 
 ```
 yarn add @tanstack/react-query axios
@@ -182,5 +182,14 @@ export const useGetUsers = () => {
 ```
 
 または src/hooks/useExample.ts 参考に
+
+</details>
+
+<details>
+<summary>MUI</summary>
+
+```
+ yarn add @mui/material @mui/styled-engine-sc styled-components @mui/icons-material
+```
 
 </details>
