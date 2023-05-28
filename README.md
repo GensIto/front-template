@@ -4,6 +4,8 @@
 - [ ] storybook: test
   - [ ] jest
 - [ ] storybook: msw
+- [ ] e2e
 - [ ] UI library
 - [ ] tanstack query
 - [ ] react-hook-from
+- [ ] react-router-dom
