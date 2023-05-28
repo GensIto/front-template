@@ -2,12 +2,13 @@
 
 - [x] eslint
 - [x] prettier
-- [ ] storybook
-- [ ] storybook: test
-  - [ ] jest
-- [ ] storybook: msw
+- [x] storybook
+- [x] storybook: test
+  - [x] jest
+- [x] storybook: msw
+- [ ] VRT
 - [x] e2e
-- [ ] UI library
+- [x] UI library
 - [x] tanstack query
 - [ ] react-hook-from
 - [ ] react-router-dom
@@ -189,7 +190,143 @@ export const useGetUsers = () => {
 <summary>MUI</summary>
 
 ```
+ yarn add @mui/system @emotion/react @emotion/styled
+
  yarn add @mui/material @mui/styled-engine-sc styled-components @mui/icons-material
 ```
+
+</details>
+
+<details>
+<summary>test(jest)</summary>
+
+```
+ yarn add -D jest ts-jest @types/jest jest-environment-jsdom @testing-library/react @testing-library/jest-dom @testing-library/user-event
+```
+
+jest.config.js 作成
+
+```
+module.exports = {
+  preset: 'ts-jest',
+  testEnvironment: 'jest-environment-jsdom',
+  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
+}
+
+```
+
+</details>
+
+<details>
+<summary>storybook</summary>
+
+vite では package.json の typescript が`"typescript": "*",`になっているため
+
+```
+yarn add -D typescript
+```
+
+を実行する
+
+```
+npx storybook init --builder @storybook/builder-vite
+```
+
+main.ts を変更
+
+```
+import type { StorybookConfig } from '@storybook/react-vite'
+import path from 'path'
+
+const config: StorybookConfig = {
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions',
+  ],
+  framework: {
+    name: '@storybook/react-vite',
+    options: {},
+  },
+  docs: {
+    autodocs: 'tag',
+  },
+  viteFinal: async (config) => {
+    config.resolve!.alias = {
+      ...config.resolve!.alias,
+      '@': path.resolve(__dirname, '../src'),
+    }
+    return config
+  },
+}
+export default config
+
+```
+
+## msw
+
+```
+yarn add -D msw msw-storybook-addon
+npx msw init ./public
+```
+
+preview.tsx に追加
+
+```
+import React from 'react'
+import type { Preview } from '@storybook/react'
+import { rest } from 'msw'
+import { Story } from '@storybook/react'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { initialize, mswDecorator } from 'msw-storybook-addon'
+
+export const decorators = [
+  mswDecorator,
+  (Element: Story) => {
+    const queryClient = new QueryClient()
+    return (
+      <QueryClientProvider client={queryClient}>
+        <Element />
+      </QueryClientProvider>
+    )
+  },
+]
+
+initialize()
+
+const preview: Preview = {
+  parameters: {
+    actions: { argTypesRegex: '^on[A-Z].*' },
+    controls: {
+      matchers: {
+        color: /(background|color)$/i,
+        date: /Date$/,
+      },
+    },
+    msw: {
+      handlers: [
+        rest.get('https://jsonplaceholder.typicode.com/todos', async (_req, res, ctx) => {
+          return res(
+            ctx.status(200),
+            ctx.json([{ userId: 1, id: 1, title: 'storybook msw', completed: false }])
+          )
+        }),
+      ],
+    },
+  },
+}
+
+export default preview
+
+```
+
+a11y
+
+```
+yarn add -D @storybook/addon-a11y
+```
+
+main に`'@storybook/addon-a11y'`追加
 
 </details>

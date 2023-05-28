@@ -10,7 +10,7 @@ type Task = {
 
 export const useExample = () => {
   const getTasks = async () => {
-    const { data } = await axios.get<Task[]>(`https://jsonplaceholder.typicode.com/todos`)
+    const { data } = await axios.get<Task[]>('https://jsonplaceholder.typicode.com/todos')
     return data
   }
   return useQuery<Task[], Error>({
