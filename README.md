@@ -134,3 +134,53 @@ yarn create playwright
 ```
 
 </details>
+
+<details>
+<summary>playwright</summary>
+
+```
+yarn add @tanstack/react-query axios
+```
+
+main.ts 更新
+
+```
+import React from 'react'
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import ReactDOM from 'react-dom/client'
+
+import App from './App'
+
+import './index.css'
+
+const queryClient = new QueryClient()
+
+ReactDOM.createRoot(document.querySelector('#root') as HTMLElement).render(
+  <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <App />
+    </QueryClientProvider>
+  </React.StrictMode>
+)
+
+```
+
+hooks 作成
+
+```
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+
+export const useGetUsers = () => {
+  const { data, isLoading, isError, error } = useQuery('users', () =>
+    axios.get('https://jsonplaceholder.typicode.com/users')
+  )
+
+  return { data, isLoading, isError, error }
+}
+```
+
+または src/hooks/useExample.ts 参考に
+
+</details>
