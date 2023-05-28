@@ -63,5 +63,13 @@ module.exports = {
     ],
     '@typescript-eslint/no-shadow': 'off',
   },
+  overrides: [
+    {
+      files: ['playwright/**/*.test.ts', 'playwright/**/*.spec.ts'],
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
+      },
+    },
+  ],
   ignorePatterns: ['node_modules/', 'dist/', 'build/', '.eslintrc.cjs', 'vite.config.ts'],
 }
