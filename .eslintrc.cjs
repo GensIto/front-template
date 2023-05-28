@@ -10,6 +10,8 @@ module.exports = {
     'airbnb/hooks',
     'plugin:unicorn/recommended',
     'prettier',
+    'plugin:storybook/recommended',
+    'plugin:storybook/recommended',
   ],
   overrides: [],
   parserOptions: {
@@ -24,7 +26,10 @@ module.exports = {
       {
         groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
         'newlines-between': 'always',
-        alphabetize: { order: 'asc', caseInsensitive: true },
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true,
+        },
         pathGroups: [
           {
             pattern: 'react**',
@@ -42,7 +47,6 @@ module.exports = {
     ],
     '@typescript-eslint/no-unused-vars': 'off',
     'unused-imports/no-unused-imports': 'error',
-
     'unicorn/filename-case': [
       'error',
       {
@@ -63,14 +67,19 @@ module.exports = {
     ],
     '@typescript-eslint/no-shadow': 'off',
     'import/prefer-default-export': 'off',
+    'react/function-component-definition': 'off',
+    'import/no-extraneous-dependencies': 'off',
   },
   ignorePatterns: [
     'node_modules/',
     'dist/',
     'build/',
+    'public/',
     '.eslintrc.cjs',
     'vite.config.ts',
     '**.config.ts',
+    '**.config.js',
+    '**.config.cjs',
     'vite-env.d.ts',
   ],
 }
