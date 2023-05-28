@@ -47,7 +47,7 @@ module.exports = {
       'error',
       {
         cases: {
-          camelCase: true,
+          kebabCase: true,
           pascalCase: true,
         },
       },
@@ -62,15 +62,14 @@ module.exports = {
       },
     ],
     '@typescript-eslint/no-shadow': 'off',
-    'import/prefer-default-export': 'off',
   },
-  ignorePatterns: [
-    'node_modules/',
-    'dist/',
-    'build/',
-    '.eslintrc.cjs',
-    'vite.config.ts',
-    '**.config.ts',
-    'vite-env.d.ts',
+  overrides: [
+    {
+      files: ['playwright/**/*.test.ts', 'playwright/**/*.spec.ts'],
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
+      },
+    },
   ],
+  ignorePatterns: ['node_modules/', 'dist/', 'build/', '.eslintrc.cjs', 'vite.config.ts'],
 }
